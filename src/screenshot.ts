@@ -26,7 +26,7 @@ export async function screenshot() {
         visible: true,
       }
     );
-    await element.screenshot({ path: "./output/screenshot.png", type: "png" });
+    await element.screenshot({ path: "output/screenshot.png", type: "png" });
 
     await browser.close();
   } catch (error) {
