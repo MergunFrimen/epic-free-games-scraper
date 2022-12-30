@@ -1,3 +1,12 @@
-import { screenshot } from "./screenshot";
+import schedule from "node-schedule";
 
-screenshot();
+import { screenshot } from "./screenshot.js";
+import { sendMessage } from "./webhook.js";
+
+// schedule.scheduleJob("37 17 * * *", async () => {
+//   await screenshot();
+// });
+
+sendMessage();
+
+console.log("ran successfully");

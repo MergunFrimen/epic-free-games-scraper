@@ -13,7 +13,7 @@ export async function screenshot() {
 
     await page.setUserAgent(new userAgent().random().toString());
     await page.goto(url, { waitUntil: ["load", "domcontentloaded"] });
-    // await delay(10000);
+    await delay(10000);
 
     const cookie = await page.waitForSelector("#onetrust-accept-btn-handler", {
       visible: true,
@@ -33,4 +33,3 @@ export async function screenshot() {
     console.error(error);
   }
 }
-screenshot();
