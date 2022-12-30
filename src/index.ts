@@ -1,12 +1,14 @@
 import schedule from "node-schedule";
 
-import { screenshot } from "./screenshot.js";
-import { sendMessage } from "./webhook.js";
+import { checkForNewGame } from "./scraper.js";
+import { sendDiscordMessage } from "./webhook.js";
 
-// schedule.scheduleJob("37 17 * * *", async () => {
-//   await screenshot();
-// });
+let lastTitle = "";
 
-sendMessage();
+const main = async () => {
+  const title = await checkForNewGame(lastTitle);
+  if (title !== lastTitle) sendDiscordMessage();
+  lastTitle = title;
+};
 
-console.log("ran successfully");
+schedule.scheduleJob("0 17 * * *", main);

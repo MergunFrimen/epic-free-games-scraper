@@ -1,17 +1,19 @@
-import fetch from "node-fetch";
+import { EmbedBuilder, WebhookClient } from "discord.js";
+import { config } from "dotenv";
 
-const url =
-  "https://discord.com/api/webhooks/1058426274424574022/6Ncl0Vofyp9XgbGB7chKZhZ3MFEbk-7_e0zXOHwjdkaQ00wO_vHL5RG_9tLukPEl17IY";
+config();
 
-export const sendMessage = () => {
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: "Bot",
-      content: "Hello there!",
-    }),
+export const sendDiscordMessage = () => {
+  const webhookClient = new WebhookClient({ url: process.env.WEBHOOK_URL });
+
+  webhookClient.send({
+    username: "Epic Free Games",
+    avatarURL: "https://i.imgur.com/Ow2zdgV.png",
+    files: [
+      {
+        attachment: "output/screenshot.png",
+        name: "screenshot.png",
+      },
+    ],
   });
 };
